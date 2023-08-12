@@ -222,13 +222,16 @@ def Upgrade(args):
 	ton.SetSettings("validatorConsole", validatorConsole)
 
 	if (len(args)) == 0:
-		color_print("Upgrading to latest pre-compiled release binaries...")
+		color_print("Upgrading to latest pre-compiled release")
 		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo]
 	else:
 		author, repo, branch = check_git(args, repo, "upgrade")
 		# if no sources
 		if branch == "None":
+			repo = "ton"
+			author = "ton-blockchain"
 			branch = "master"
+
 		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
 
 	exitCode = run_as_root(runArgs)
