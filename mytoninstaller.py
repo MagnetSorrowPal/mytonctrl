@@ -420,7 +420,7 @@ def EnableValidatorConsole():
 	tonDbDir = local.buffer["tonDbDir"]
 	tonBinDir = local.buffer["tonBinDir"]
 	vconfigPath = local.buffer["vconfigPath"]
-	generate_random_id = tonBinDir + "utils/generate-random-id"
+	generate_random_id = tonBinDir + "generate-random-id"
 	keysDir = local.buffer["keysDir"]
 	client_key = keysDir + "client"
 	server_key = keysDir + "server"
@@ -517,7 +517,7 @@ def EnableLiteServer():
 	keysDir = local.buffer["keysDir"]
 	tonBinDir = local.buffer["tonBinDir"]
 	vconfigPath = local.buffer["vconfigPath"]
-	generate_random_id = tonBinDir + "utils/generate-random-id"
+	generate_random_id = tonBinDir + "generate-random-id"
 	liteserver_key = keysDir + "liteserver"
 	liteserver_pubkey = liteserver_key + ".pub"
 
@@ -932,7 +932,7 @@ def EnableDhtServer():
 	tonBinDir = local.buffer["tonBinDir"]
 	globalConfigPath = local.buffer["globalConfigPath"]
 	dht_server = tonBinDir + "dht-server"
-	generate_random_id = tonBinDir + "utils/generate-random-id"
+	generate_random_id = tonBinDir + "generate-random-id"
 	tonDhtServerDir = "/var/ton-dht-server/"
 	tonDhtKeyringDir = tonDhtServerDir + "keyring/"
 
