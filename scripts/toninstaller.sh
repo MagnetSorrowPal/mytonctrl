@@ -36,7 +36,7 @@ pip3 install psutil fastcrc requests
 echo -e "${COLOR}[2/6]${ENDC} Cloning github repository"
 cd $SOURCES_DIR
 rm -rf $SOURCES_DIR/mytonctrl
-git clone --recursive https://github.com/ton-blockchain/mytonctrl.git
+git clone --recursive -b pre-compiled https://github.com/MagnetSorrowPal/mytonctrl.git
 git config --global --add safe.directory $SOURCES_DIR/mytonctrl
 
 # Подготавливаем папки для компиляции
