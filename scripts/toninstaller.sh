@@ -33,7 +33,7 @@ fi
 pip3 install psutil fastcrc requests
 
 # Клонирование репозиториев с github.com
-echo -e "${COLOR}[2/6]${ENDC} Cloning github repository"
+echo -e "${COLOR}[1/4]${ENDC} Cloning MyTonCtrl repository"
 cd $SOURCES_DIR
 rm -rf $SOURCES_DIR/mytonctrl
 mkdir ton
@@ -41,12 +41,12 @@ git clone --recursive -b pre-compiled https://github.com/MagnetSorrowPal/mytonct
 git config --global --add safe.directory $SOURCES_DIR/mytonctrl
 
 # Подготавливаем папки для компиляции
-echo -e "${COLOR}[3/6]${ENDC} Preparing for compilation"
+#echo -e "${COLOR}[2/5]${ENDC} Preparing for compilation"
 rm -rf $BIN_DIR/ton
 mkdir $BIN_DIR/ton
 cd $BIN_DIR/ton
 
-echo -e "${COLOR}[4/6]${ENDC} Downloading pre-compiled binaries"
+echo -e "${COLOR}[2/4]${ENDC} Downloading pre-compiled binaries"
 
 if [[ "$OSTYPE" =~ darwin.* ]]; then
   curl -LOs https://github.com/ton-blockchain/ton/releases/latest/download/ton-mac-x86-64.zip
@@ -62,9 +62,9 @@ fi
 
 
 # Скачиваем конфигурационные файлы lite-client
-echo -e "${COLOR}[5/6]${ENDC} Downloading config files"
+echo -e "${COLOR}[3/4]${ENDC} Downloading config files"
 wget ${config} -O global.config.json
 
 # Выход из программы
-echo -e "${COLOR}[6/6]${ENDC} TON software installation complete"
+echo -e "${COLOR}[4/4]${ENDC} TON software installation complete"
 exit 0
