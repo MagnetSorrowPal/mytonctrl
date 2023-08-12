@@ -80,9 +80,9 @@ fi
 
 # Проверяю наличие компонентов TON
 echo -e "${COLOR}[2/4]${ENDC} Checking for required TON components"
-file1=${BIN_DIR}/ton/crypto/fift
-file2=${BIN_DIR}/ton/lite-client/lite-client
-file3=${BIN_DIR}/ton/validator-engine-console/validator-engine-console
+file1=${BIN_DIR}/ton/fift
+file2=${BIN_DIR}/ton/lite-client
+file3=${BIN_DIR}/ton/validator-engine-console
 if [ -f "${file1}" ] && [ -f "${file2}" ] && [ -f "${file3}" ]; then
 	echo "TON exist"
 	cd $SOURCES_DIR

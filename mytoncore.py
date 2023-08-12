@@ -4091,7 +4091,7 @@ def Telemetry(ton):
 	# Get git hashes
 	gitHashes = dict()
 	gitHashes["mytonctrl"] = get_git_hash("/usr/src/mytonctrl")
-	gitHashes["validator"] = GetBinGitHash("/usr/bin/ton/validator-engine/validator-engine")
+	gitHashes["validator"] = GetBinGitHash("/usr/bin/ton/validator-engine")
 	data["gitHashes"] = gitHashes
 	data["stake"] = local.db.get("stake")
 	

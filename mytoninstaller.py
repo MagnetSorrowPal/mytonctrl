@@ -64,7 +64,7 @@ def Refresh():
 	local.buffer["tonDbDir"] = tonDbDir
 	local.buffer["keysDir"] = keysDir
 	local.buffer["tonLogPath"] = tonWorkDir + "log"
-	local.buffer["validatorAppPath"] = tonBinDir + "validator-engine/validator-engine"
+	local.buffer["validatorAppPath"] = tonBinDir + "validator-engine"
 	local.buffer["globalConfigPath"] = tonBinDir + "global.config.json"
 	local.buffer["vconfigPath"] = tonDbDir + "config.json"
 #end define
@@ -379,14 +379,14 @@ def FirstMytoncoreSettings():
 
 	# fift
 	fift = dict()
-	fift["appPath"] = tonBinDir + "crypto/fift"
-	fift["libsPath"] = tonSrcDir + "crypto/fift/lib"
-	fift["smartcontsPath"] = tonSrcDir + "crypto/smartcont"
+	fift["appPath"] = tonBinDir + "fift"
+	fift["libsPath"] = tonSrcDir + "lib"
+	fift["smartcontsPath"] = tonSrcDir + "smartcont"
 	mconfig["fift"] = fift
 
 	# lite-client
 	liteClient = dict()
-	liteClient["appPath"] = tonBinDir + "lite-client/lite-client"
+	liteClient["appPath"] = tonBinDir + "lite-client"
 	liteClient["configPath"] = tonBinDir + "global.config.json"
 	mconfig["liteClient"] = liteClient
 
@@ -487,7 +487,7 @@ def EnableValidatorConsole():
 
 	# edit mytoncore config file
 	validatorConsole = dict()
-	validatorConsole["appPath"] = tonBinDir + "validator-engine-console/validator-engine-console"
+	validatorConsole["appPath"] = tonBinDir + "validator-engine-console"
 	validatorConsole["privKeyPath"] = client_key
 	validatorConsole["pubKeyPath"] = server_pubkey
 	validatorConsole["addr"] = "127.0.0.1:{cport}".format(cport=cport)
@@ -903,14 +903,14 @@ def CreateSymlinks():
 	file.write("/usr/bin/python3 /usr/src/mytonctrl/mytonctrl.py $@")
 	file.close()
 	file = open(fift_file, 'wt')
-	file.write("/usr/bin/ton/crypto/fift $@")
+	file.write("/usr/bin/ton/fift $@")
 	file.close()
 	file = open(liteclient_file, 'wt')
-	file.write("/usr/bin/ton/lite-client/lite-client -C /usr/bin/ton/global.config.json $@")
+	file.write("/usr/bin/ton/lite-client -C /usr/bin/ton/global.config.json $@")
 	file.close()
 	if cport:
 		file = open(validator_console_file, 'wt')
-		file.write("/usr/bin/ton/validator-engine-console/validator-engine-console -k /var/ton-work/keys/client -p /var/ton-work/keys/server.pub -a 127.0.0.1:" + str(cport) + " $@")
+		file.write("/usr/bin/ton/validator-engine-console -k /var/ton-work/keys/client -p /var/ton-work/keys/server.pub -a 127.0.0.1:" + str(cport) + " $@")
 		file.close()
 		args = ["chmod", "+x", validator_console_file]
 		subprocess.run(args)
@@ -918,7 +918,7 @@ def CreateSymlinks():
 	subprocess.run(args)
 
 	# env
-	fiftpath = "export FIFTPATH=/usr/src/ton/crypto/fift/lib/:/usr/src/ton/crypto/smartcont/"
+	fiftpath = "export FIFTPATH=/usr/src/ton/lib/:/usr/src/ton/smartcont/"
 	file = open(env_file, 'rt+')
 	text = file.read()
 	if fiftpath not in text:
@@ -931,7 +931,7 @@ def EnableDhtServer():
 	vuser = local.buffer["vuser"]
 	tonBinDir = local.buffer["tonBinDir"]
 	globalConfigPath = local.buffer["globalConfigPath"]
-	dht_server = tonBinDir + "dht-server/dht-server"
+	dht_server = tonBinDir + "dht-server"
 	generate_random_id = tonBinDir + "utils/generate-random-id"
 	tonDhtServerDir = "/var/ton-dht-server/"
 	tonDhtKeyringDir = tonDhtServerDir + "keyring/"

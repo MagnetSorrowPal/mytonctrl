@@ -421,7 +421,7 @@ def PrintLocalStatus(adnlAddr, validatorIndex, validatorEfficiency, validatorWal
 	# Mytonctrl and validator git hash
 	mtcGitPath = "/usr/src/mytonctrl"
 	validatorGitPath = "/usr/src/ton"
-	validatorBinGitPath = "/usr/bin/ton/validator-engine/validator-engine"
+	validatorBinGitPath = "/usr/bin/ton/validator-engine"
 	mtcGitHash = get_git_hash(mtcGitPath, short=True)
 	validatorGitHash = GetBinGitHash(validatorBinGitPath, short=True)
 	mtcGitBranch = get_git_branch(mtcGitPath)
