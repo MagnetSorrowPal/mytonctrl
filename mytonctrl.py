@@ -201,6 +201,7 @@ def Update(args):
 
 def Upgrade(args):
 	repo = "ton"
+	author = "ton-blockchain"
 
 	# bugfix if the files are in the wrong place
 	liteClient = ton.GetSettings("liteClient")
@@ -221,10 +222,13 @@ def Upgrade(args):
 	ton.SetSettings("validatorConsole", validatorConsole)
 
 	if (len(args)) == 0:
-		author = "ton-blockchain"
+		color_print("Upgrading to latest pre-compiled release binaries...")
 		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo]
 	else:
 		author, repo, branch = check_git(args, repo, "upgrade")
+		# if no sources
+		if branch == "None":
+			branch = "master"
 		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
 
 	exitCode = run_as_root(runArgs)
