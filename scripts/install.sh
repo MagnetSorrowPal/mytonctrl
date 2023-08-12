@@ -90,7 +90,7 @@ if [ -f "${file1}" ] && [ -f "${file2}" ] && [ -f "${file3}" ]; then
 	git clone --recursive -b pre-compiled https://github.com/MagnetSorrowPal/mytonctrl.git
 else
 	rm -f toninstaller.sh
-	curl -LO https://raw.githubusercontent.com/MagnetSorrowPal/mytonctrl/pre-compiled/scripts/toninstaller.sh
+	curl -LOs https://raw.githubusercontent.com/MagnetSorrowPal/mytonctrl/pre-compiled/scripts/toninstaller.sh
 	bash toninstaller.sh -c "${config}"
 	rm -f toninstaller.sh
 fi
