@@ -231,8 +231,7 @@ def Upgrade(args):
 			branch = "master"
 		else:
 			author, repo, branch = check_git(args, repo, "upgrade")
-
-	runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
+		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
 
 	exitCode = run_as_root(runArgs)
 	exitCode += run_as_root(["python3", "/usr/src/mytonctrl/scripts/upgrade.py"])
