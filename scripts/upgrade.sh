@@ -61,6 +61,7 @@ else
   # Update code
   echo "https://github.com/${author}/${repo}.git -> ${branch}"
   git clone --recursive https://github.com/${author}/${repo}.git
+  git config --global --add safe.directory $PWD/${repo}
   cd ${repo} && git checkout ${branch} && git submodule update --init --recursive
   export CC=/usr/bin/clang
   export CXX=/usr/bin/clang++

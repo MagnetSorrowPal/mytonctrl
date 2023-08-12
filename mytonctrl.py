@@ -226,12 +226,13 @@ def Upgrade(args):
 		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo]
 	else:
 		if len(os.listdir('/usr/src/ton')) == 0:
-			color_print("Compiling binaries very first time. Specified branch: " + args[0])
 			if len(args) == 1: #branch only
+				color_print("Compiling binaries very first time. Specified branch: " + args[0])
 				repo = "ton"
 				author = "ton-blockchain"
 				branch = args[0]
 			else:
+				color_print("Compiling binaries very first time. Specified parameters: " + args[0] + " " + args[1] + " " + args[2])
 				repo = args[0]
 				author = args[1]
 				branch = args[2]
