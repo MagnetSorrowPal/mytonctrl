@@ -63,7 +63,7 @@ fi
 
 # Скачиваем конфигурационные файлы lite-client
 echo -e "${COLOR}[3/4]${ENDC} Downloading config files"
-curl -LOs ${config} -O global.config.json
+curl -LOs ${config} -o global.config.json
 
 # Выход из программы
 echo -e "${COLOR}[4/4]${ENDC} TON software installation complete"
