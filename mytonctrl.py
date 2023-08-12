@@ -201,8 +201,13 @@ def Update(args):
 
 def Upgrade(args):
 	repo = "ton"
-	author, repo, branch = check_git(args, repo, "upgrade")
-	
+	if (len(args)) == 0:
+		author = "ton-blockchain"
+		repo = "ton"
+		branch = ""
+	else:
+		author, repo, branch = check_git(args, repo, "upgrade")
+
 	# bugfix if the files are in the wrong place
 	liteClient = ton.GetSettings("liteClient")
 	configPath = liteClient.get("configPath")
@@ -220,7 +225,7 @@ def Upgrade(args):
 	if "/usr/bin/ton" in pubKeyPath:
 		validatorConsole["pubKeyPath"] = "/var/ton-work/keys/server.pub"
 	ton.SetSettings("validatorConsole", validatorConsole)
-	
+
 	# Run script
 	runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
 	exitCode = run_as_root(runArgs)
