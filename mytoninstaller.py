@@ -380,8 +380,8 @@ def FirstMytoncoreSettings():
 	# fift
 	fift = dict()
 	fift["appPath"] = tonBinDir + "fift"
-	fift["libsPath"] = tonSrcDir + "lib"
-	fift["smartcontsPath"] = tonSrcDir + "smartcont"
+	fift["libsPath"] = tonBinDir + "lib"
+	fift["smartcontsPath"] = tonBinDir + "smartcont"
 	mconfig["fift"] = fift
 
 	# lite-client
