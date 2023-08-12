@@ -48,12 +48,12 @@ cd $BIN_DIR/ton
 echo -e "${COLOR}[4/6]${ENDC} Downloading pre-compiled binaries"
 
 if [[ "$OSTYPE" =~ darwin.* ]]; then
-  wget --no-check-certificate --no-cache --no-cookies https://github.com/ton-blockchain/ton/releases/latest/download/ton-mac-x86-64.zip
+  curl -LO https://github.com/ton-blockchain/ton/releases/latest/download/ton-mac-x86-64.zip
   unzip -qq ton-mac-x86-64.zip
   rm -rf lib smartcont ton-mac-x86-64.zip
   chmod +x *
 else
-  wget --no-check-certificate --no-cache --no-cookies https://github.com/ton-blockchain/ton/releases/latest/download/ton-linux-x86_64.zip
+  curl -LO https://github.com/ton-blockchain/ton/releases/latest/download/ton-linux-x86_64.zip
   unzip -qq ton-linux-x86_64.zip
   rm -rf lib smartcont ton-linux-x86_64.zip
   chmod +x *
