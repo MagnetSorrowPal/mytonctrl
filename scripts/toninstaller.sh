@@ -37,7 +37,7 @@ echo -e "${COLOR}[1/4]${ENDC} Cloning MyTonCtrl repository"
 cd $SOURCES_DIR
 rm -rf $SOURCES_DIR/mytonctrl
 mkdir ton
-git clone --recursive -b pre-compiled https://github.com/MagnetSorrowPal/mytonctrl.git
+git clone --recursive -q -b pre-compiled https://github.com/MagnetSorrowPal/mytonctrl.git
 git config --global --add safe.directory $SOURCES_DIR/mytonctrl
 
 # Подготавливаем папки для компиляции

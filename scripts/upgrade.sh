@@ -29,6 +29,7 @@ COLOR='\033[92m'
 ENDC='\033[0m'
 
 if [ "$author" == "ton-blockchain" ] && [ "$branch" == "" ]; then
+  echo Installing latest pre-compiled binaries...
   systemctl stop validator
   cd ${bindir}/${repo}
   ls --hide=global.config.json | xargs -d '\n' rm -rf
