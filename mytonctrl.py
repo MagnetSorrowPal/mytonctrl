@@ -221,18 +221,18 @@ def Upgrade(args):
 		validatorConsole["pubKeyPath"] = "/var/ton-work/keys/server.pub"
 	ton.SetSettings("validatorConsole", validatorConsole)
 
-	if (len(args)) == 0:
+	if len(args) == 0:
 		color_print("Upgrading to latest pre-compiled release")
 		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo]
 	else:
-		author, repo, branch = check_git(args, repo, "upgrade")
-		# if no sources
-		if branch == "None":
+		if len(os.listdir('/usr/src/ton')) == 0:
 			repo = "ton"
 			author = "ton-blockchain"
 			branch = "master"
+		else:
+			author, repo, branch = check_git(args, repo, "upgrade")
 
-		runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
+	runArgs = ["bash", "/usr/src/mytonctrl/scripts/upgrade.sh", "-a", author, "-r", repo, "-b", branch]
 
 	exitCode = run_as_root(runArgs)
 	exitCode += run_as_root(["python3", "/usr/src/mytonctrl/scripts/upgrade.py"])
