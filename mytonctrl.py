@@ -104,7 +104,7 @@ def Init(argv):
 def PreUp():
 	CheckMytonctrlUpdate()
 	check_vport()
-	# CheckTonUpdate()
+	CheckTonUpdate()
 #end define
 
 def Installer(args):
@@ -258,9 +258,24 @@ def CheckMytonctrlUpdate():
 
 def CheckTonUpdate():
 	git_path = "/usr/src/ton"
-	result = check_git_update(git_path)
-	if result is True:
-		color_print(local.translate("ton_update_available"))
+	if len(os.listdir('/usr/src/ton')) != 0:
+		result = check_git_update(git_path)
+		if result is True:
+			color_print(local.translate("ton_update_available"))
+	else:
+		currentValidatorBinGitPath = "/usr/bin/ton/validator-engine/validator-engine"
+		old_hash = GetBinGitHash(currentValidatorBinGitPath, short=True)
+		latestFuncUrl = 'https://github.com/ton-blockchain/ton/releases/latest/download/func-linux-x86_64'
+		r = requests.get(latestFuncUrl, allow_redirects=True)
+		latestFuncPath = '/tmp/func-linux-x86_64'
+		open(latestFuncPath, 'wb').write(r.content)
+		# Разрешить запуск
+		args = ["chmod", "+x", latestFuncPath]
+		subprocess.run(args)
+		new_hash = GetBinGitHashV(latestFuncPath, short=True)
+#		color_print(old_hash + " "+ new_hash)
+		if old_hash != new_hash:
+			color_print(local.translate("ton_update_available"))
 #end define
 
 def PrintStatus(args):

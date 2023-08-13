@@ -4122,6 +4122,22 @@ def GetBinGitHash(path, short=False):
 	return result
 #end define
 
+def GetBinGitHashV(path, short=False):
+	if not os.path.isfile(path):
+		return
+	args = [path, "-V"]
+	process = subprocess.run(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=3)
+	output = process.stdout.decode("utf-8")
+	if "build information" not in output:
+		return
+	buff = output.split(' ')
+	start = buff.index("Commit:") + 1
+	result = buff[start].replace(',', '')
+	if short is True:
+		result = result[:7]
+	return result
+#end define
+
 def OverlayTelemetry(ton):
 	sendTelemetry = local.db.get("sendTelemetry")
 	if sendTelemetry is not True:
