@@ -104,7 +104,7 @@ def Init(argv):
 def PreUp():
 	CheckMytonctrlUpdate()
 	check_vport()
-	CheckTonUpdate()
+	# CheckTonUpdate()
 #end define
 
 def Installer(args):
@@ -273,7 +273,6 @@ def CheckTonUpdate():
 		args = ["chmod", "+x", latestFuncPath]
 		subprocess.run(args)
 		new_hash = GetBinGitHashV(latestFuncPath, short=True)
-#		color_print(old_hash + " "+ new_hash)
 		if old_hash != new_hash:
 			color_print(local.translate("ton_update_available"))
 #end define

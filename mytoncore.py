@@ -4128,7 +4128,7 @@ def GetBinGitHashV(path, short=False):
 	args = [path, "-V"]
 	process = subprocess.run(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=3)
 	output = process.stdout.decode("utf-8")
-	if "build information" not in output:
+	if "Build information" not in output:
 		return
 	buff = output.split(' ')
 	start = buff.index("Commit:") + 1
