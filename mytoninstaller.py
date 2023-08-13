@@ -64,7 +64,7 @@ def Refresh():
 	local.buffer["tonDbDir"] = tonDbDir
 	local.buffer["keysDir"] = keysDir
 	local.buffer["tonLogPath"] = tonWorkDir + "log"
-	local.buffer["validatorAppPath"] = tonBinDir + "validator-engine"
+	local.buffer["validatorAppPath"] = tonBinDir + "validator-engine/validator-engine"
 	local.buffer["globalConfigPath"] = tonBinDir + "global.config.json"
 	local.buffer["vconfigPath"] = tonDbDir + "config.json"
 #end define
@@ -379,14 +379,14 @@ def FirstMytoncoreSettings():
 
 	# fift
 	fift = dict()
-	fift["appPath"] = tonBinDir + "fift"
+	fift["appPath"] = tonBinDir + "crypto/fift"
 	fift["libsPath"] = tonBinDir + "lib"
 	fift["smartcontsPath"] = tonBinDir + "smartcont"
 	mconfig["fift"] = fift
 
 	# lite-client
 	liteClient = dict()
-	liteClient["appPath"] = tonBinDir + "lite-client"
+	liteClient["appPath"] = tonBinDir + "lite-client/lite-client"
 	liteClient["configPath"] = tonBinDir + "global.config.json"
 	mconfig["liteClient"] = liteClient
 
@@ -420,7 +420,7 @@ def EnableValidatorConsole():
 	tonDbDir = local.buffer["tonDbDir"]
 	tonBinDir = local.buffer["tonBinDir"]
 	vconfigPath = local.buffer["vconfigPath"]
-	generate_random_id = tonBinDir + "generate-random-id"
+	generate_random_id = tonBinDir + "utils/generate-random-id"
 	keysDir = local.buffer["keysDir"]
 	client_key = keysDir + "client"
 	server_key = keysDir + "server"
@@ -487,7 +487,7 @@ def EnableValidatorConsole():
 
 	# edit mytoncore config file
 	validatorConsole = dict()
-	validatorConsole["appPath"] = tonBinDir + "validator-engine-console"
+	validatorConsole["appPath"] = tonBinDir + "validator-engine-console/validator-engine-console"
 	validatorConsole["privKeyPath"] = client_key
 	validatorConsole["pubKeyPath"] = server_pubkey
 	validatorConsole["addr"] = "127.0.0.1:{cport}".format(cport=cport)
@@ -517,7 +517,7 @@ def EnableLiteServer():
 	keysDir = local.buffer["keysDir"]
 	tonBinDir = local.buffer["tonBinDir"]
 	vconfigPath = local.buffer["vconfigPath"]
-	generate_random_id = tonBinDir + "generate-random-id"
+	generate_random_id = tonBinDir + "utils/generate-random-id"
 	liteserver_key = keysDir + "liteserver"
 	liteserver_pubkey = liteserver_key + ".pub"
 
@@ -903,14 +903,14 @@ def CreateSymlinks():
 	file.write("/usr/bin/python3 /usr/src/mytonctrl/mytonctrl.py $@")
 	file.close()
 	file = open(fift_file, 'wt')
-	file.write("/usr/bin/ton/fift $@")
+	file.write("/usr/bin/ton/crypto/fift $@")
 	file.close()
 	file = open(liteclient_file, 'wt')
-	file.write("/usr/bin/ton/lite-client -C /usr/bin/ton/global.config.json $@")
+	file.write("/usr/bin/ton/lite-client/lite-client -C /usr/bin/ton/global.config.json $@")
 	file.close()
 	if cport:
 		file = open(validator_console_file, 'wt')
-		file.write("/usr/bin/ton/validator-engine-console -k /var/ton-work/keys/client -p /var/ton-work/keys/server.pub -a 127.0.0.1:" + str(cport) + " $@")
+		file.write("/usr/bin/ton/validator-engine-console/validator-engine-console -k /var/ton-work/keys/client -p /var/ton-work/keys/server.pub -a 127.0.0.1:" + str(cport) + " $@")
 		file.close()
 		args = ["chmod", "+x", validator_console_file]
 		subprocess.run(args)
@@ -931,8 +931,8 @@ def EnableDhtServer():
 	vuser = local.buffer["vuser"]
 	tonBinDir = local.buffer["tonBinDir"]
 	globalConfigPath = local.buffer["globalConfigPath"]
-	dht_server = tonBinDir + "dht-server"
-	generate_random_id = tonBinDir + "generate-random-id"
+	dht_server = tonBinDir + "dht-server/dht-server"
+	generate_random_id = tonBinDir + "utils/generate-random-id"
 	tonDhtServerDir = "/var/ton-dht-server/"
 	tonDhtKeyringDir = tonDhtServerDir + "keyring/"
 

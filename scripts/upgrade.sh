@@ -78,18 +78,6 @@ else
   if [ $? -eq 0 ]; then
     cp -R ${srcdir}/${repo}/crypto/fift/lib .
     cp -R ${srcdir}/${repo}/crypto/smartcont .
-    mkdir tmp
-    cp validator-engine/validator-engine tmp/
-    cp validator-engine-console/validator-engine-console tmp/
-    cp dht-server/dht-server tmp/
-    cp utils/generate-random-id tmp/
-    cp lite-client/lite-client tmp/
-    cp crypto/fift crypto/func tmp
-    cp tonlib/libtonlibjson.so.0.5 tmp/
-    cp rldp-http-proxy/rldp-http-proxy tmp/
-    rm -rf validator-engine lite-client validator-engine-console utils dht-server crypto rldp-http-proxy tonlib
-    cp tmp/* .
-    rm -rf tmp
   fi
 fi
 

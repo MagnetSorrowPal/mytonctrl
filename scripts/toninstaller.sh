@@ -50,14 +50,24 @@ echo -e "${COLOR}[2/4]${ENDC} Downloading pre-compiled binaries"
 
 if [[ "$OSTYPE" =~ darwin.* ]]; then
   curl -LOs https://github.com/ton-blockchain/ton/releases/latest/download/ton-mac-x86-64.zip
-  unzip -qq ton-mac-x86-64.zip
+  unzip -qq ton-mac-x86-64.zip -d tmp
   rm -rf ton-mac-x86-64.zip
-  chmod +x *
+  chmod +x tmp/*
 else
   curl -LOs https://github.com/ton-blockchain/ton/releases/latest/download/ton-linux-x86_64.zip
-  unzip -qq ton-linux-x86_64.zip
+  unzip -qq ton-linux-x86_64.zip -d tmp
   rm -rf ton-linux-x86_64.zip
-  chmod +x *
+  chmod +x tmp/*
+  mkdir validator-engine validator-engine-console dht-server utils lite-client crypto tonlib rldp-http-proxy
+  cp tmp/validator-engine validator-engine/
+  cp tmp/validator-engine-console validator-engine-console/
+  cp tmp/dht-server dht-server/
+  cp tmp/generate-random-id utils/
+  cp tmp/lite-client lite-client/
+  cp tmp/fift tmp/func crypto/
+  cp tmp/libtonlibjson* tonlib/
+  cp tmp/rldp-http-proxy rldp-http-proxy/
+  rm -rf tmp
 fi
 
 
