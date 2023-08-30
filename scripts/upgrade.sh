@@ -49,7 +49,7 @@ if [ "$author" == "ton-blockchain" ] && [ "$branch" == "" ]; then
 else
 
   # Установить дополнительные зависимости
-  apt-get install -y build-essential git cmake clang libgflags-dev libreadline-dev pkg-config libgsl-dev python3 python3-dev python3-pip ninja-build
+  apt-get install -y build-essential git cmake clang libgflags-dev libreadline-dev pkg-config libgsl-dev python3 python3-dev python3-pip ninja-build automake autogen autoconf libtool texinfo
 
   # bugfix if the files are in the wrong place
   wget "https://ton-blockchain.github.io/global.config.json" -O global.config.json
